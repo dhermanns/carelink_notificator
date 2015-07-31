@@ -62,17 +62,15 @@ if system("ping -c2 www.google.com")
       bg_array = []
 
       # Get Latest Values
-      JSON.parse(history).each do |history|
-        if history.size
-          history.each do |hist|
-            if hist.kind_of?(Array)
-            elsif hist["name"] == "GlucoseSensorData"
+      JSON.parse(history).each do |hist|
+        if hist.size
+            if hist["name"] == "GlucoseSensorData"
               found_glucose_sensor_data = 1
               bg_array.push(hist["sgv"].to_i)
               last_date = hist["date"]
               last_bg = hist["sgv"]
+              puts ['Datum', last_date, 'BZ:', last_bg]
             end
-          end
         end
       end
       
@@ -119,15 +117,14 @@ if system("ping -c2 www.google.com")
         bg_array = []
 
         # Get Latest Values
-        JSON.parse(history).each do |history|
-          if history.size
-            history.each do |hist|
-              if hist.kind_of?(Array)
-              elsif hist["name"] == "GlucoseSensorData"
-                bg_array.push(hist["sgv"].to_i)
-                last_date = hist["date"]
-                last_bg = hist["sgv"]
-              end
+        JSON.parse(history).each do |hist|
+          if hist.size
+            if hist["name"] == "GlucoseSensorData"
+              found_glucose_sensor_data = 1
+              bg_array.push(hist["sgv"].to_i)
+              last_date = hist["date"]
+              last_bg = hist["sgv"]
+              puts ['Datum', last_date, 'BZ:', last_bg]
             end
           end
         end
